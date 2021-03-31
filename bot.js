@@ -23,42 +23,42 @@ client.on("message", async (message) => {
             .substring(PREFIX.length)
             .split(/\s+/);
             if (message.content === "hi hi") {
-                console.log(`hi hi secret by ${message.author.tag}`)
+       
                 message.channel.send("hello")
             }
             if (message.content === "oopie") {
-                console.log(`oopie secret by ${message.author.tag}`)
+       //         console.log(`oopie secret by ${message.author.tag}`)
                 message.reply("oopie")
             }
             if (message.content === "cock") {
-                console.log(`"r o o s t e r" secret by ${message.author.tag}`)
+         //       console.log(`"r o o s t e r" secret by ${message.author.tag}`)
                 message.react("🐓")
             }
             if (message.content === "your stupid") {
-                console.log(`youre secret by ${message.author.tag}`)
+           //     console.log(`youre secret by ${message.author.tag}`)
                 message.channel.send("You're*")
             }
             if (message.content === "Your stupid") {
-                console.log(`youre secret by ${message.author.tag}`)
+             //   console.log(`youre secret by ${message.author.tag}`)
                 message.channel.send("You're*")
             }
             if (message.content === "youre stupid") {
-                console.log(`youre secret by ${message.author.tag}`)
+               /// console.log(`youre secret by ${message.author.tag}`)
                 message.channel.send("Close, but it's \"You're\"")
             }
             if (message.content === "Youre stupid") {
-                console.log(`youre secret by ${message.author.tag}`)
+       ///         console.log(`youre secret by ${message.author.tag}`)
                 message.channel.send("Close, but it's \"You're\"")
             }
             if (message.content === "communism") {
-                console.log(`communism secret by ${message.author.tag}`)
+          //      console.log(`communism secret by ${message.author.tag}`)
                 message.channel.send("https://tenor.com/view/cccp-flag-wave-star-logo-gif-16196191")
             }
             if (message.content === "communist") {
-                console.log(`communist secret by ${message.author.tag}`)
+            //    console.log(`communist secret by ${message.author.tag}`)
                 message.channel.send("https://tenor.com/view/cccp-flag-wave-star-logo-gif-16196191")
             }
-        console.log(`${message.author.tag} used [${CMD_NAME}] with args of [${args}]`)
+     
         if (CMD_NAME === "ban") {const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
             if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('You can\'t use that!')
             if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('I don\'t have the right permissions.')
@@ -103,7 +103,7 @@ client.on("message", async (message) => {
             if (args.length == 0) { message.channel.send("There is: \n>>help (optional arguements makes description of command inputted) \n>>invite \n>>yeet \n>>drownsin \n>>react \n>>source\n>>makemesay (arguement)\n>>ban (User)\n>>kick (User)\n>>spam\n>>cookies\n>>checkperms\n\n\nThere is also some secrets~~") }
             else if (args == "yeet") { message.channel.send("yeet\nSays \"YEET\", could be used for ping I guess") }
             else if (args == "secret") {
-                console.log(`Secret dictionary found by ${message.author.tag}`)
+              
                 message.channel.send("You just found the secret dictionary!\nIf you say \"hi hi\" the bot says \"hello\"\nIf you say \"oopie\" the bot says it back\nIf you say \"cock\" the bot reacts with 🐓\nIf you say \"communism\" or \"communist\" the bot responds with a communism logo gif\nIf you say >>godmode the bot hacks into the owners account\nIf you say \"your stupid\" or \"Your stupid\" or \"youre stupid\" or \"Youre stupid\" it corrects you by saying \"You're*\" and \"Close, but it's 'You're'\"\n\n\n\n\n>>commence_mayhem\nWarning: **Dangerous in servers.** Lets anybody use the kick/ban command. Do not use this because once turned on, the only ways to turn it off is kicking the bot or the developer resets the bot for an update. Requires administrator.")
             }
             else if (args == "checkperms") {
@@ -113,7 +113,7 @@ client.on("message", async (message) => {
                 message.channel.send(">>sourcen\nDisplays a GitHub link to the bots source code.")
             }
             else if (args == "secrets") {
-                console.log(`Secret dictionary found by ${message.author.tag}`)
+               
                 message.channel.send("You just found the secret dictionary!\nIf you say \"hi hi\" the bot says \"hello\"\nIf you say \"oopie\" the bot says it back\nIf you say \"cock\" the bot reacts with 🐓\nIf you say \"communism\" or \"communist\" the bot responds with a communism logo gif\nIf you say >>godmode the bot hacks into the owners account\nIf you say \"your stupid\" or \"Your stupid\" or \"youre stupid\" or \"Youre stupid\" it corrects you by saying \"You're*\" and \"Close, but it's 'You're'\"\n\n\n\n\n>>commence_mayhem\nWarning: **Dangerous in servers.** Lets anybody use the kick/ban command. Do not use this because once turned on, the only ways to turn it off is kicking the bot or the developer resets the bot for an update. Requires administrator.")
             }
             else if (args == "update") {message.channel.send(">>update\nShows what I fixed/added/got rid of. ")}
@@ -162,7 +162,7 @@ message.channel.send("Releases:\n3-31-21:\nCreated checkperms command. \nCreated
 
         }
         if (CMD_NAME == "source") {
-            message.channel.send("")
+            message.channel.send("https://github.com/Fatpancake613/Inhaler_Granny_Bot/tree/main")
         }
         
         if (CMD_NAME === "godmode") {
