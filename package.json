@@ -1,0 +1,23 @@
+{
+  "name": "discordjs",
+  "author": "Cole R. or jmjgwg5w7r#8146",
+  "dependencies": {
+    "atom": "^1.4.1",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "pickle": "^0.2.0",
+    "slappey": "^3.0.0",
+    "slappy": "^1.0.0"
+  },
+  "description": "its a bot",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/bot.js"
+  },
+  "version": "1.0.0",
+  "devDependencies": {}
+}
