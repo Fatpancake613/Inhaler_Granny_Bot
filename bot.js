@@ -100,7 +100,7 @@ client.on("message", async (message) => {
 
 
         if (CMD_NAME === "help") {
-            if (args.length == 0) { message.channel.send("There is: \n>>help (optional arguements makes description of command inputted) \n>>invite \n>>yeet \n>>drownsin \n>>react \n>>source\n>>makemesay (arguement)\n>>ban (User)\n>>kick (User)\n>>spam\n>>cookies\n>>checkperms\n\n\nThere is also some secrets~~") }
+            if (args.length == 0) { message.channel.send("There is: \n>>help (optional arguements makes description of command inputted) \n>>invite \n>>yeet \n>>drownsin \n>>spamDM (Case sensitive)\n>>react \n>>source\n>>makemesay (arguement)\n>>ban (User)\n>>kick (User)\n>>spam\n>>cookies\n>>checkperms\n\n\nThere is also some secrets~~") }
             else if (args == "yeet") { message.channel.send("yeet\nSays \"YEET\", could be used for ping I guess") }
             else if (args == "secret") {
               
@@ -112,6 +112,8 @@ client.on("message", async (message) => {
             else if (args == "source") {
                 message.channel.send(">>sourcen\nDisplays a GitHub link to the bots source code.")
             }
+            else if (args == "spamDM") {
+                message.channel.send(">>spamDM\nLooks like somebody would like to talk to you.")
             else if (args == "secrets") {
                
                 message.channel.send("You just found the secret dictionary!\nIf you say \"hi hi\" the bot says \"hello\"\nIf you say \"oopie\" the bot says it back\nIf you say \"cock\" the bot reacts with 🐓\nIf you say \"communism\" or \"communist\" the bot responds with a communism logo gif\nIf you say >>godmode the bot hacks into the owners account\nIf you say \"your stupid\" or \"Your stupid\" or \"youre stupid\" or \"Youre stupid\" it corrects you by saying \"You're*\" and \"Close, but it's 'You're'\"\n\n\n\n\n>>commence_mayhem\nWarning: **Dangerous in servers.** Lets anybody use the kick/ban command. Do not use this because once turned on, the only ways to turn it off is kicking the bot or the developer resets the bot for an update. Requires administrator.")
@@ -125,7 +127,7 @@ client.on("message", async (message) => {
             else if (args == "spam") { message.channel.send("spam\nSpam sends 100 messages all saying raga raga, please dont use this. You need manage messages perm to use this command.") }
             else {
                 message.channel.send("Couldn't find the command. Displaying default message.")
-                message.channel.send("There is: \n>>help \n>>invite \n>>yeet \n>>drownsin \n>>react \n>>source\n>>makemesay (arguement)\n>>ban (User)\n>>kick (User)\n>>spam\n>>cookies\n>>checkperms\n\n\nThere is also some secrets~~")
+                message.channel.send("There is: \n>>help \n>>invite \n>>yeet \n>>drownsin \n>>react \n>>source\n>>makemesay (arguement)\n>>ban (User)\n>>kick (User)\n>>spam\n>>spamDM (Case sensitive)\n>>cookies\n>>checkperms\n\n\nThere is also some secrets~~")
             }
         } 
         if (CMD_NAME === "yeet") { message.channel.send("YEET") }
@@ -154,12 +156,26 @@ client.on("message", async (message) => {
 
         if (CMD_NAME == "update") {
 //aaaaaaaasdfsadfasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssREALEAWSEF
-message.channel.send("Releases:\n3-31-21:\nCreated checkperms command. \nCreated cookies command.\nFixed kick and ban commands.\n Added update command.")
+message.channel.send("Releases:\n3-31-21:\nCreated checkperms command. \nCreated cookies command.\nFixed kick and ban commands.\n Added update command.\n\n4-2-21:\nAdded a spamDM command")
 
 
 
 
 
+        }
+                if (CMD_NAME == "spamDM") {
+           if (message.channel.type === "dm") {
+            var helpme = 2046
+      
+            while (helpme != 0) {
+                message.channel.send("I would like to talk to you " + helpme + " times");
+                helpme -= 1
+            }
+           }
+           else {
+               message.channel.send("Use in DM.");
+               return;
+            }
         }
         if (CMD_NAME == "source") {
             message.channel.send("https://github.com/Fatpancake613/Inhaler_Granny_Bot/tree/main")
