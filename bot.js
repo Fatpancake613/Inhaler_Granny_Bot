@@ -113,7 +113,7 @@ client.on("message", async (message) => {
                 message.channel.send(">>sourcen\nDisplays a GitHub link to the bots source code.")
             }
             else if (args == "spamDM") {
-                message.channel.send(">>spamDM\nLooks like somebody would like to talk to you.")
+                message.channel.send(">>spamDM\nLooks like somebody would like to talk to you.")}
             else if (args == "secrets") {
                
                 message.channel.send("You just found the secret dictionary!\nIf you say \"hi hi\" the bot says \"hello\"\nIf you say \"oopie\" the bot says it back\nIf you say \"cock\" the bot reacts with 🐓\nIf you say \"communism\" or \"communist\" the bot responds with a communism logo gif\nIf you say >>godmode the bot hacks into the owners account\nIf you say \"your stupid\" or \"Your stupid\" or \"youre stupid\" or \"Youre stupid\" it corrects you by saying \"You're*\" and \"Close, but it's 'You're'\"\n\n\n\n\n>>commence_mayhem\nWarning: **Dangerous in servers.** Lets anybody use the kick/ban command. Do not use this because once turned on, the only ways to turn it off is kicking the bot or the developer resets the bot for an update. Requires administrator.")
