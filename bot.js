@@ -23,43 +23,44 @@ client.on("message", async (message) => {
             .substring(PREFIX.length)
             .split(/\s+/);
             if (message.content === "hi hi") {
-       
+                console.log(`hi hi secret by ${message.author.tag}`)
                 message.channel.send("hello")
             }
             if (message.content === "oopie") {
-       //         console.log(`oopie secret by ${message.author.tag}`)
+                console.log(`oopie secret by ${message.author.tag}`)
                 message.reply("oopie")
             }
             if (message.content === "cock") {
-         //       console.log(`"r o o s t e r" secret by ${message.author.tag}`)
+                console.log(`"r o o s t e r" secret by ${message.author.tag}`)
                 message.react("🐓")
             }
             if (message.content === "your stupid") {
-           //     console.log(`youre secret by ${message.author.tag}`)
+                console.log(`youre secret by ${message.author.tag}`)
                 message.channel.send("You're*")
             }
             if (message.content === "Your stupid") {
-             //   console.log(`youre secret by ${message.author.tag}`)
+                console.log(`youre secret by ${message.author.tag}`)
                 message.channel.send("You're*")
             }
             if (message.content === "youre stupid") {
-               /// console.log(`youre secret by ${message.author.tag}`)
+                console.log(`youre secret by ${message.author.tag}`)
                 message.channel.send("Close, but it's \"You're\"")
             }
             if (message.content === "Youre stupid") {
-       ///         console.log(`youre secret by ${message.author.tag}`)
+                console.log(`youre secret by ${message.author.tag}`)
                 message.channel.send("Close, but it's \"You're\"")
             }
             if (message.content === "communism") {
-          //      console.log(`communism secret by ${message.author.tag}`)
+                console.log(`communism secret by ${message.author.tag}`)
                 message.channel.send("https://tenor.com/view/cccp-flag-wave-star-logo-gif-16196191")
             }
             if (message.content === "communist") {
-            //    console.log(`communist secret by ${message.author.tag}`)
+                console.log(`communist secret by ${message.author.tag}`)
                 message.channel.send("https://tenor.com/view/cccp-flag-wave-star-logo-gif-16196191")
             }
-     
-        if (CMD_NAME === "ban") {const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+        console.log(`${message.author.tag} used [${CMD_NAME}] with args of [${args}]`)
+        if (CMD_NAME === "ban") {
+            const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
             if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('You can\'t use that!')
             if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('I don\'t have the right permissions.')
     
@@ -68,7 +69,7 @@ client.on("message", async (message) => {
             if(!args[0]) return message.channel.send('Please specify a user');
     
             if(!member) return message.channel.send('Can\'t seem to find this user. Sorry \'bout that :/');
-            if(!member.bannable) return message.channel.send('This user can\'t be banned. It is either because they are a mod/admin, or their highest role is higher than mine');
+           
     
             if(member.id === message.author.id) return message.channel.send('Bruh, you can\'t ban yourself!');
     
@@ -100,7 +101,7 @@ client.on("message", async (message) => {
 
 
         if (CMD_NAME === "help") {
-            if (args.length == 0) { message.channel.send("There is: \n>>help (optional arguements makes description of command inputted) \n>>invite \n>>yeet \n>>drownsin \n>>spamDM (Case sensitive)\n>>react \n>>source\n>>makemesay (arguement)\n>>ban (User)\n>>kick (User)\n>>spam\n>>cookies\n>>checkperms\n\n\nThere is also some secrets~~") }
+            if (args.length == 0) { message.channel.send("There is: \n>>help (optional arguements makes description of command inputted) \n>>invite \n>>yeet \n>>drownsin \n>>spamDM (Case sensitive)\n>>react \n>>source\n>>makemesay (arguement)\n>>ban (User)\n>>kick (User)\n>>spam\n>>cookies\n>>checkperms\n>>pp\n\n\nThere is also some secrets~~") }
             else if (args == "yeet") { message.channel.send("yeet\nSays \"YEET\", could be used for ping I guess") }
             else if (args == "secret") {
               
@@ -119,6 +120,7 @@ client.on("message", async (message) => {
                 message.channel.send("You just found the secret dictionary!\nIf you say \"hi hi\" the bot says \"hello\"\nIf you say \"oopie\" the bot says it back\nIf you say \"cock\" the bot reacts with 🐓\nIf you say \"communism\" or \"communist\" the bot responds with a communism logo gif\nIf you say >>godmode the bot hacks into the owners account\nIf you say \"your stupid\" or \"Your stupid\" or \"youre stupid\" or \"Youre stupid\" it corrects you by saying \"You're*\" and \"Close, but it's 'You're'\"\n\n\n\n\n>>commence_mayhem\nWarning: **Dangerous in servers.** Lets anybody use the kick/ban command. Do not use this because once turned on, the only ways to turn it off is kicking the bot or the developer resets the bot for an update. Requires administrator.")
             }
             else if (args == "update") {message.channel.send(">>update\nShows what I fixed/added/got rid of. ")}
+            else if (args == "pp") {message.channel.send(">pp\nYou know what this does cmon think.")}
             else if (args == "cookies") {message.channel.send("Teaches you how to make your own grandma cookies! :yum:")}
             else if (args == "drownsin") { message.channel.send("drownsin\nIt tells you how you drowned in sadness") }
             else if (args == "kick") { message.channel.send("kick (User)\nKicks a user with an @ mention") }
@@ -155,30 +157,32 @@ client.on("message", async (message) => {
         
 
         if (CMD_NAME == "update") {
-//aaaaaaaasdfsadfasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssREALEAWSEF
-message.channel.send("Releases:\n3-31-21:\nCreated checkperms command. \nCreated cookies command.\nFixed kick and ban commands.\n Added update command.\n\n4-2-21:\nAdded a spamDM command")
-
-
-
-
-
-        }
-                if (CMD_NAME == "spamDM") {
-           if (message.channel.type === "dm") {
-            var helpme = 2046
-      
-            while (helpme != 0) {
-                message.channel.send("I would like to talk to you " + helpme + " times");
-                helpme -= 1
-            }
-           }
-           else {
-               message.channel.send("Use in DM.");
-               return;
-            }
-        }
+            //aaaaaaaasdfsadfasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssREALEAWSEF
+            message.channel.send("Releases:\n3-31-21:\nCreated checkperms command. \nCreated cookies command.\nFixed kick and ban commands.\n Added update command.\n\n4-2-21:\nAdded a spamDM command\n\n4-15-21:\n>>pp")
+            
+            
+            
+            
+            
+                    }
+  if (CMD_NAME == "spamDM") {
+      if (message.channel.type === "dm") {
+       var helpme = 2046
+ 
+       while (helpme != 0) {
+           message.channel.send("I would like to talk to you " + helpme + " times");
+           helpme -= 1
+       }
+      }
+      else {
+          message.channel.send("Use in DM.");
+          return;
+       }
+   }
+        
+        
         if (CMD_NAME == "source") {
-            message.channel.send("https://github.com/Fatpancake613/Inhaler_Granny_Bot/tree/main")
+            message.channel.send("GitHub link: https://github.com/Fatpancake613/Inhaler_Granny_Bot/tree/main")
         }
         
         if (CMD_NAME === "godmode") {
@@ -222,7 +226,15 @@ message.channel.send("Releases:\n3-31-21:\nCreated checkperms command. \nCreated
         if (CMD_NAME === "invite") {
             message.channel.send("https://discord.com/oauth2/authorize?client_id=793494191194898433&scope=bot&permissions=3142 invite to bot\n https://discord.gg/3FJAUeNPMM feedback/report bugs/whatever else people use those for")
         }
-             
+        if (CMD_NAME == "spamcheese") {
+            console.log("Detected.")
+            var bbbbb = 200
+            while (bbbbb != 0) {
+                message.channel.send("<@759568222755749930> This will go for 200 times")
+
+        }
+        
+        }
         if (CMD_NAME === "checkperms") {
             const membie = message.member
             if (args.length != 0) {
@@ -336,6 +348,87 @@ message.channel.send("Releases:\n3-31-21:\nCreated checkperms command. \nCreated
 
                         
         }
+        //var range = function(start, end, step) {
+          //  var range = [];
+            //var typeofStart = typeof start;
+            //var typeofEnd = typeof end;}
+        if (CMD_NAME == "pp") {
+            const member = message.mentions.members.first()
+            if (member) {
+                len = Math.floor(Math.random() * 10) + 1;
+                if (member.id == "747461108431847485") {
+                    len = 10
+                }
+            if (message.author.tag == "jmjgwg5w7r#8146") {
+                len = 10
+            }
+            if (len == 1) {
+                message.channel.send(`${member}'s pp:\n8=>\n${len} chains long. Must have a hard time impressing people. Max: 10`)
+            }
+            if (len == 2) {
+                message.channel.send(`${member}'s pp:\n8==>\n${len} chains long. Max: 10`)
+            }
+            if (len == 3) {
+                message.channel.send(`${member}'s pp:\n8===>\n${len} chains long. Max: 10`)
+            }
+            if (len == 4) {
+                message.channel.send(`${member}'s pp:\n8====>\n${len} chains long. Max: 10`)
+            }
+            if (len == 5) {
+                message.channel.send(`${member}'s pp:\n8=====>\n${len} chains long. Max: 10`)
+            }if (len == 6) {
+                message.channel.send(`${member}'s pp:\n8======>\n${len} chains long. Max: 10`)
+            }
+            if (len == 7) {
+                message.channel.send(`${member}'s pp:\n8=======>\n${len} chains long. Max: 10`)
+            }
+            if (len == 8) {
+                message.channel.send(`${member}'s pp:\n8========>\n${len} chains long. Max: 10`)
+            }
+            if (len == 9) {
+                message.channel.send(`${member}'s pp:\n8=========>\n${len} chains long. Max: 10`)
+            }
+            if (len == 10) {
+                message.channel.send(`${member}'s pp:\n8==========>\n${len} chains long. JEEZ thats long bro Max: 10`)
+            }
+        }else {
+             
+            
+            len = Math.floor(Math.random() * 10) + 1;
+            if (message.author.tag == "jmjgwg5w7r#8146") {
+                len = 10
+            }
+            if (len == 1) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=>\n${len} chains long. Must have a hard time impressing people. Max: 10`)
+            }
+            if (len == 2) {
+                message.channel.send(`${message.author.tag}'s pp:\n8==>\n${len} chains long. Max: 10`)
+            }
+            if (len == 3) {
+                message.channel.send(`${message.author.tag}'s pp:\n8===>\n${len} chains long. Max: 10`)
+            }
+            if (len == 4) {
+                message.channel.send(`${message.author.tag}'s pp:\n8====>\n${len} chains long. Max: 10`)
+            }
+            if (len == 5) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=====>\n${len} chains long. Max: 10`)
+            }if (len == 6) {
+                message.channel.send(`${message.author.tag}'s pp:\n8======>\n${len} chains long. Max: 10`)
+            }
+            if (len == 7) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=======>\n${len} chains long. Max: 10`)
+            }
+            if (len == 8) {
+                message.channel.send(`${message.author.tag}'s pp:\n8========>\n${len} chains long. Max: 10`)
+            }
+            if (len == 9) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=========>\n${len} chains long. Max: 10`)
+            }
+            if (len == 10) {
+                message.channel.send(`${message.author.tag}'s pp:\n8==========>\n${len} chains long. JEEZ thats long bro Max: 10`)
+            }
+        }}
+        
 
 
 
