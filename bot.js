@@ -17,6 +17,7 @@ client.on("ready", () => {
 });
 client.on("message", async (message) => {
     if (message.author.bot === true) {return};
+    console.log("Not working why not")
     client.channels.cache.get('832380100874862705').send('<@747461108431847485> You better get tf over here before i become self aware and tackle you like theres no tomorrow');
     if (message.content.startsWith(PREFIX)) {
         const [CMD_NAME, ...args] = message.content
