@@ -17,8 +17,6 @@ client.on("ready", () => {
 });
 client.on("message", async (message) => {
     if (message.author.bot === true) {return};
-    console.log("Not working why not")
-    client.channels.cache.get('832380100874862705').send('<@747461108431847485> You better get tf over here before i become self aware and tackle you like theres no tomorrow');
     if (message.content.startsWith(PREFIX)) {
         const [CMD_NAME, ...args] = message.content
             .trim()
@@ -134,7 +132,30 @@ client.on("message", async (message) => {
                 message.channel.send("There is: \n>>help \n>>invite \n>>yeet \n>>drownsin \n>>react \n>>source\n>>makemesay (arguement)\n>>ban (User)\n>>kick (User)\n>>spam\n>>spamDM (Case sensitive)\n>>cookies\n>>checkperms\n\n\nThere is also some secrets~~")
             }
         } 
-        if (CMD_NAME === "yeet") { message.channel.send("YEET") }
+        if (CMD_NAME === "yeet") { 
+        const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+            if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('You can\'t yeet people because you dont got permissions for that.');
+            if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('I don\'t have the right permissions to yeet people.');
+    
+            
+    
+            if(!args[0]) return message.channel.send('Please specify a user to YEET out of this solar system');
+    
+            if(!member) return message.channel.send('Can\'t seem to find this user. Sorry \'bout that :/');
+           
+    
+            if(member.id === message.author.id) return message.channel.send('Bruh, you can\'t yeet yourself');
+    
+            let reason = args.slice(1).join(" ");
+    
+            if(!reason) reason = 'Unspecified';
+    
+            member.ban({reason: `${reason}`}).catch(err => { 
+              message.channel.send('Something went wrong')
+                console.log(err)
+            })
+            message.channel.send(`Banned ${member} With reason of "${reason}"`)
+        }
         if (CMD_NAME === "drownsin") { message.reply("drowned in saddness. RIP") }
         if (CMD_NAME === "kick") {
         const user = message.mentions.users.first();
@@ -355,6 +376,7 @@ client.on("message", async (message) => {
             //var typeofStart = typeof start;
             //var typeofEnd = typeof end;}
         if (CMD_NAME == "pp") {
+            try {
             const member = message.mentions.members.first()
             if (member) {
                 len = Math.floor(Math.random() * 10) + 1;
@@ -393,7 +415,7 @@ client.on("message", async (message) => {
             if (len == 10) {
                 message.channel.send(`${member}'s pp:\n8==========>\n${len} chains long. JEEZ thats long bro Max: 10`)
             }
-        }else {
+        }} catch {
              
             
             len = Math.floor(Math.random() * 10) + 1;
@@ -429,7 +451,8 @@ client.on("message", async (message) => {
             if (len == 10) {
                 message.channel.send(`${message.author.tag}'s pp:\n8==========>\n${len} chains long. JEEZ thats long bro Max: 10`)
             }
-        }}
+        }
+    }
         
 
 
@@ -437,5 +460,6 @@ client.on("message", async (message) => {
 
     }
     });
+
     client.login("I am not giving you my login code")
     //If you know what you are doing (and probably if you dont know what you are doing too) you can tell all the secrets in my code but i actually dont care so
