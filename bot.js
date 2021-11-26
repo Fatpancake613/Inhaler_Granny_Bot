@@ -1,9 +1,18 @@
 require("dotenv").config();
 
+const mySecret = process.env['login'] 
 const { Client } = require('discord.js');
 const client = new Client();
 const PREFIX = ">>";
-
+const express = require('express')
+const app = express();
+const port = 3000;
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
 
 var sheild = true
 
@@ -16,13 +25,7 @@ client.on("ready", () => {
     );
 });
 client.on("message", async (message) => {
-    if (message.author.bot === true) {return};
-    if (message.content.startsWith(PREFIX)) {
-        const [CMD_NAME, ...args] = message.content
-            .trim()
-            .substring(PREFIX.length)
-            .split(/\s+/);
-            if (message.content === "hi hi") {
+  if (message.content === "hi hi") {
                 console.log(`hi hi secret by ${message.author.tag}`)
                 message.channel.send("hello")
             }
@@ -57,7 +60,15 @@ client.on("message", async (message) => {
             if (message.content === "communist") {
                 console.log(`communist secret by ${message.author.tag}`)
                 message.channel.send("https://tenor.com/view/cccp-flag-wave-star-logo-gif-16196191")
-            }
+            }    
+    if (message.author.bot === true) {return};
+
+    if (message.content.startsWith(PREFIX)) {
+        const [CMD_NAME, ...args] = message.content
+            .trim()
+            .substring(PREFIX.length)
+            .split(/\s+/);
+            
         console.log(`${message.author.tag} used [${CMD_NAME}] with args of [${args}]`)
         if (CMD_NAME === "ban") {
             const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
@@ -93,7 +104,7 @@ client.on("message", async (message) => {
             else {
                 sheild = false
                 console.log(`${message.author.tag} just used the >>commence_mayhem command. Wow`);
-                message.channel.send("...Oh my, I didn't know people would even know about the command, let alone use it. Haha server go boom boom");
+                message.channel.send("Oh, I didn't know people would even know about the command, let alone use it. Haha server go boom boom");
             };
         }
         
@@ -132,30 +143,7 @@ client.on("message", async (message) => {
                 message.channel.send("There is: \n>>help \n>>invite \n>>yeet \n>>drownsin \n>>react \n>>source\n>>makemesay (arguement)\n>>ban (User)\n>>kick (User)\n>>spam\n>>spamDM (Case sensitive)\n>>cookies\n>>checkperms\n\n\nThere is also some secrets~~")
             }
         } 
-        if (CMD_NAME === "yeet") { 
-        const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-            if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('You can\'t yeet people because you dont got permissions for that.');
-            if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('I don\'t have the right permissions to yeet people.');
-    
-            
-    
-            if(!args[0]) return message.channel.send('Please specify a user to YEET out of this solar system');
-    
-            if(!member) return message.channel.send('Can\'t seem to find this user. Sorry \'bout that :/');
-           
-    
-            if(member.id === message.author.id) return message.channel.send('Bruh, you can\'t yeet yourself');
-    
-            let reason = args.slice(1).join(" ");
-    
-            if(!reason) reason = 'Unspecified';
-    
-            member.ban({reason: `${reason}`}).catch(err => { 
-              message.channel.send('Something went wrong')
-                console.log(err)
-            })
-            message.channel.send(`Banned ${member} With reason of "${reason}"`)
-        }
+        if (CMD_NAME === "yeet") { message.channel.send("YEET") }
         if (CMD_NAME === "drownsin") { message.reply("drowned in saddness. RIP") }
         if (CMD_NAME === "kick") {
         const user = message.mentions.users.first();
@@ -181,7 +169,7 @@ client.on("message", async (message) => {
 
         if (CMD_NAME == "update") {
             //aaaaaaaasdfsadfasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssREALEAWSEF
-            message.channel.send("Releases:\n3-31-21:\nCreated checkperms command. \nCreated cookies command.\nFixed kick and ban commands.\n Added update command.\n\n4-2-21:\nAdded a spamDM command\n\n4-15-21:\n>>pp")
+            message.channel.send("Releases:\n3-31-21:\nCreated checkperms command. \nCreated cookies command.\nFixed kick and ban commands.\n Added update command.\n\n4-2-21:\nAdded a spamDM command\n\n4-15-21:\n>>pp\n11-26-21:\n\nWow, its been a little while since I did anything with this. Removed non-working links, changed dialogue. Basically the entire bot was broken so I fixed that")
             
             
             
@@ -190,16 +178,29 @@ client.on("message", async (message) => {
                     }
   if (CMD_NAME == "spamDM") {
       if (message.channel.type === "dm") {
-       var helpme = 2046
+       var helpme = 15568
  
        while (helpme != 0) {
-           message.channel.send("I would like to talk to you " + helpme + " times");
+           message.channel.send("Give me " + helpme + " Pokemon cards");
            helpme -= 1
        }
       }
       else {
+          if (message.author.id == "747461108431847485"){
+            var helpme = 15568
+ 
+            
+ 
+       while (helpme != 0) {
+        client.users.cache.get(args[0]).send("Give me " + helpme + " Pokemon cards")
+           helpme -= 1
+       }
+       
+            
+              
+          }else{
           message.channel.send("Use in DM.");
-          return;
+          return;}
        }
    }
         
@@ -247,7 +248,7 @@ client.on("message", async (message) => {
    
 
         if (CMD_NAME === "invite") {
-            message.channel.send("https://discord.com/oauth2/authorize?client_id=793494191194898433&scope=bot&permissions=3142 invite to bot\n https://discord.gg/3FJAUeNPMM feedback/report bugs/whatever else people use those for")
+            message.channel.send("https://discord.com/oauth2/authorize?client_id=793494191194898433&scope=bot&permissions=3142 invite to bot")
         }
         if (CMD_NAME == "spamcheese") {
             console.log("Detected.")
@@ -262,7 +263,146 @@ client.on("message", async (message) => {
             const membie = message.member
             if (args.length != 0) {
             const member = message.mentions.members.first();
-                           /*if (message.member.hasPermission("ADMINISTRATOR")) {
+                           
+                            message.channel.send("Administrator: " + member.hasPermission("ADMINISTRATOR") + "\nCreate Invite: " + member.hasPermission("CREATE_INSTANT_INVITE") + "\nKick Members: " + member.hasPermission("KICK_MEMBERS") + "\nBan Members: " + member.hasPermission("BAN_MEMBERS") + "\nManage Channels: " + member.hasPermission("MANAGE_CHANNELS") + "\nManage Guild: " + member.hasPermission("MANAGE_GUILD") + "\nAdd Reactions: " + member.hasPermission("ADD_REACTIONS") + "\nView Aduit Log: " + member.hasPermission("VIEW_AUDIT_LOG") + "\nPriority Speaker: " + member.hasPermission("PRIORITY_SPEAKER") + "\nStream: " + member.hasPermission("STREAM") + "\nView Channel: " + member.hasPermission("VIEW_CHANNEL") + "\nSend Messages: " + member.hasPermission("SEND_MESSAGES") + "\nSend TTS Messages: " + member.hasPermission("SEND_TTS_MESSAGES") + "\nManage Messages: " + member.hasPermission("MANAGE_MESSAGES") + "\nEmbed Links: " + member.hasPermission("EMBED_LINKS") + "\nAttach Files: " + member.hasPermission("ATTACH_FILES") + "\nRead Message History: " + member.hasPermission("READ_MESSAGE_HISTORY") + "\nMention Everyone: " + member.hasPermission("MENTION_EVERYONE") + "\nUse External Emojis: " + member.hasPermission("USE_EXTERNAL_EMOJIS") + "\nView Guild Insights: " + member.hasPermission("VIEW_GUILD_INSIGHTS") + "\nConnect: " + member.hasPermission("CONNECT") + "\nSpeak: " + member.hasPermission("SPEAK") + "\nMute Members: " + member.hasPermission("MUTE_MEMBERS") + "\nDeafen Members: " + member.hasPermission("DEAFEN_MEMBERS") + "\nMove Members: " + member.hasPermission("MOVE_MEMBERS") + "\nUse VAD (Voice Activity Detection): " + member.hasPermission("USE_VAD") + "\nChange Nickname (Self): " + member.hasPermission("CHANGE_NICKNAME") + "\nChange Nickname (Others): " + member.hasPermission("MANAGE_NICKNAMES") + "\nManage Roles: " + member.hasPermission("MANAGE_ROLES") + "\nManage Webhooks: " + member.hasPermission("MANAGE_WEBHOOKS") + "\nManage Emojis: " + member.hasPermission("MANAGE_EMOJIS"))
+                        }
+                     else {
+                        message.channel.send("Administrator: " + membie.hasPermission("ADMINISTRATOR") + "\nCreate Invite: " + membie.hasPermission("CREATE_INSTANT_INVITE") + "\nKick Members: " + membie.hasPermission("KICK_MEMBERS") + "\nBan Members: " + membie.hasPermission("BAN_MEMBERS") + "\nManage Channels: " + membie.hasPermission("MANAGE_CHANNELS") + "\nManage Guild: " + membie.hasPermission("MANAGE_GUILD") + "\nAdd Reactions: " + membie.hasPermission("ADD_REACTIONS") + "\nView Aduit Log: " + membie.hasPermission("VIEW_AUDIT_LOG") + "\nPriority Speaker: " + membie.hasPermission("PRIORITY_SPEAKER") + "\nStream: " + membie.hasPermission("STREAM") + "\nView Channel: " + membie.hasPermission("VIEW_CHANNEL") + "\nSend Messages: " + membie.hasPermission("SEND_MESSAGES") + "\nSend TTS Messages: " + membie.hasPermission("SEND_TTS_MESSAGES") + "\nManage Messages: " + membie.hasPermission("MANAGE_MESSAGES") + "\nEmbed Links: " + membie.hasPermission("EMBED_LINKS") + "\nAttach Files: " + membie.hasPermission("ATTACH_FILES") + "\nRead Message History: " + membie.hasPermission("READ_MESSAGE_HISTORY") + "\nMention Everyone: " + membie.hasPermission("MENTION_EVERYONE") + "\nUse External Emojis: " + membie.hasPermission("USE_EXTERNAL_EMOJIS") + "\nView Guild Insights: " + membie.hasPermission("VIEW_GUILD_INSIGHTS") + "\nConnect: " + membie.hasPermission("CONNECT") + "\nSpeak: " + membie.hasPermission("SPEAK") + "\nMute Members: " + membie.hasPermission("MUTE_MEMBERS") + "\nDeafen Members: " + membie.hasPermission("DEAFEN_MEMBERS") + "\nMove Members: " + membie.hasPermission("MOVE_MEMBERS") + "\nUse VAD (Voice Activity Detection): " + membie.hasPermission("USE_VAD") + "\nChange Nickname (Self): " + membie.hasPermission("CHANGE_NICKNAME") + "\nChange Nickname (Others): " + membie.hasPermission("MANAGE_NICKNAMES") + "\nManage Roles: " + membie.hasPermission("MANAGE_ROLES") + "\nManage Webhooks: " + membie.hasPermission("MANAGE_WEBHOOKS") + "\nManage Emojis: " + membie.hasPermission("MANAGE_EMOJIS"))
+                     }
+                            
+             
+                    
+
+ 
+
+                        
+        }
+        if (CMD_NAME == "pp") {
+
+            try {
+            if (args == "") {
+                len = Math.floor(Math.random() * 10) + 1;
+            if (message.author.tag == "jmjgwg5w7r#8146") {
+                len = 10
+            }
+            if (len == 1) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=>\n${len} chains long. Must have a hard time impressing girls. Max: 10`)
+            }
+            if (len == 2) {
+                message.channel.send(`${message.author.tag}'s pp:\n8==>\n${len} chains long. Max: 10`)
+            }
+            if (len == 3) {
+                message.channel.send(`${message.author.tag}'s pp:\n8===>\n${len} chains long. Max: 10`)
+            }
+            if (len == 4) {
+                message.channel.send(`${message.author.tag}'s pp:\n8====>\n${len} chains long. Max: 10`)
+            }
+            if (len == 5) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=====>\n${len} chains long. Max: 10`)
+            }if (len == 6) {
+                message.channel.send(`${message.author.tag}'s pp:\n8======>\n${len} chains long. Max: 10`)
+            }
+            if (len == 7) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=======>\n${len} chains long. Max: 10`)
+            }
+            if (len == 8) {
+                message.channel.send(`${message.author.tag}'s pp:\n8========>\n${len} chains long. Max: 10`)
+            }
+            if (len == 9) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=========>\n${len} chains long. Max: 10`)
+
+           }
+            if (len == 10) {
+                message.channel.send(`${message.author.tag}'s pp:\n8==========>\n${len} chains long. Thats long bro Max: 10`)
+            }
+            }
+            const member = message.mentions.members.first()
+            if (member) {
+                len = Math.floor(Math.random() * 10) + 1;
+                if (member.id == "747461108431847485") {
+                    len = 10
+                }
+            
+            if (len == 1) {
+                message.channel.send(`${member}'s pp:\n8=>\n${len} chains long. Must have a hard time impressing girls. Max: 10`)
+            }
+            if (len == 2) {
+                message.channel.send(`${member}'s pp:\n8==>\n${len} chains long. Max: 10`)
+            }
+            if (len == 3) {
+                message.channel.send(`${member}'s pp:\n8===>\n${len} chains long. Max: 10`)
+            }
+            if (len == 4) {
+                message.channel.send(`${member}'s pp:\n8====>\n${len} chains long. Max: 10`)
+            }
+            if (len == 5) {
+                message.channel.send(`${member}'s pp:\n8=====>\n${len} chains long. Max: 10`)
+            }if (len == 6) {
+                message.channel.send(`${member}'s pp:\n8======>\n${len} chains long. Max: 10`)
+            }
+            if (len == 7) {
+                message.channel.send(`${member}'s pp:\n8=======>\n${len} chains long. Max: 10`)
+            }
+            if (len == 8) {
+                message.channel.send(`${member}'s pp:\n8========>\n${len} chains long. Max: 10`)
+            }
+            if (len == 9) {
+                message.channel.send(`${member}'s pp:\n8=========>\n${len} chains long. Max: 10`)
+            }
+            if (len == 10) {
+                message.channel.send(`${member}'s pp:\n8==========>\n${len} chains long. Thats long bro Max: 10`)
+            }
+        }} catch {
+           /*
+            
+            len = Math.floor(Math.random() * 10) + 1;
+            if (message.author.tag == "jmjgwg5w7r#8146") {
+                len = 10
+            }
+            if (len == 1) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=>\n${len} chains long. Must have a hard time impressing girls. Max: 10`)
+            }
+            if (len == 2) {
+                message.channel.send(`${message.author.tag}'s pp:\n8==>\n${len} chains long. Max: 10`)
+            }
+            if (len == 3) {
+                message.channel.send(`${message.author.tag}'s pp:\n8===>\n${len} chains long. Max: 10`)
+            }
+            if (len == 4) {
+                message.channel.send(`${message.author.tag}'s pp:\n8====>\n${len} chains long. Max: 10`)
+            }
+            if (len == 5) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=====>\n${len} chains long. Max: 10`)
+            }if (len == 6) {
+                message.channel.send(`${message.author.tag}'s pp:\n8======>\n${len} chains long. Max: 10`)
+            }
+            if (len == 7) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=======>\n${len} chains long. Max: 10`)
+            }
+            if (len == 8) {
+                message.channel.send(`${message.author.tag}'s pp:\n8========>\n${len} chains long. Max: 10`)
+            }
+            if (len == 9) {
+                message.channel.send(`${message.author.tag}'s pp:\n8=========>\n${len} chains long. Max: 10`)
+c           }
+            if (len == 10) {
+                message.channel.send(`${message.author.tag}'s pp:\n8==========>\n${len} chains long. Thats long bro Max: 10`)
+            }*/
+        }
+    }
+
+
+
+
+    }
+    });
+
+
+client.login(mySecret);
+/*
+Code remnants
+
+if (message.member.hasPermission("ADMINISTRATOR")) {
                                 admin = true
                             } else {admin = false};
                             if (message.member.hasPermission("CREATE_INSTANT_INVITE")) {
@@ -358,108 +498,46 @@ client.on("message", async (message) => {
                                 manageemojis = true
                             } else {manageemojis = false};
                             console.log("Admin after all check permissions: " + admin)*/
-                            message.channel.send("Administrator: " + member.hasPermission("ADMINISTRATOR") + "\nCreate Invite: " + member.hasPermission("CREATE_INSTANT_INVITE") + "\nKick Members: " + member.hasPermission("KICK_MEMBERS") + "\nBan Members: " + member.hasPermission("BAN_MEMBERS") + "\nManage Channels: " + member.hasPermission("MANAGE_CHANNELS") + "\nManage Guild: " + member.hasPermission("MANAGE_GUILD") + "\nAdd Reactions: " + member.hasPermission("ADD_REACTIONS") + "\nView Aduit Log: " + member.hasPermission("VIEW_AUDIT_LOG") + "\nPriority Speaker: " + member.hasPermission("PRIORITY_SPEAKER") + "\nStream: " + member.hasPermission("STREAM") + "\nView Channel: " + member.hasPermission("VIEW_CHANNEL") + "\nSend Messages: " + member.hasPermission("SEND_MESSAGES") + "\nSend TTS Messages: " + member.hasPermission("SEND_TTS_MESSAGES") + "\nManage Messages: " + member.hasPermission("MANAGE_MESSAGES") + "\nEmbed Links: " + member.hasPermission("EMBED_LINKS") + "\nAttach Files: " + member.hasPermission("ATTACH_FILES") + "\nRead Message History: " + member.hasPermission("READ_MESSAGE_HISTORY") + "\nMention Everyone: " + member.hasPermission("MENTION_EVERYONE") + "\nUse External Emojis: " + member.hasPermission("USE_EXTERNAL_EMOJIS") + "\nView Guild Insights: " + member.hasPermission("VIEW_GUILD_INSIGHTS") + "\nConnect: " + member.hasPermission("CONNECT") + "\nSpeak: " + member.hasPermission("SPEAK") + "\nMute Members: " + member.hasPermission("MUTE_MEMBERS") + "\nDeafen Members: " + member.hasPermission("DEAFEN_MEMBERS") + "\nMove Members: " + member.hasPermission("MOVE_MEMBERS") + "\nUse VAD (Voice Activity Detection): " + member.hasPermission("USE_VAD") + "\nChange Nickname (Self): " + member.hasPermission("CHANGE_NICKNAME") + "\nChange Nickname (Others): " + member.hasPermission("MANAGE_NICKNAMES") + "\nManage Roles: " + member.hasPermission("MANAGE_ROLES") + "\nManage Webhooks: " + member.hasPermission("MANAGE_WEBHOOKS") + "\nManage Emojis: " + member.hasPermission("MANAGE_EMOJIS"))
-                        }
-                     else {
-                        message.channel.send("Administrator: " + membie.hasPermission("ADMINISTRATOR") + "\nCreate Invite: " + membie.hasPermission("CREATE_INSTANT_INVITE") + "\nKick Members: " + membie.hasPermission("KICK_MEMBERS") + "\nBan Members: " + membie.hasPermission("BAN_MEMBERS") + "\nManage Channels: " + membie.hasPermission("MANAGE_CHANNELS") + "\nManage Guild: " + membie.hasPermission("MANAGE_GUILD") + "\nAdd Reactions: " + membie.hasPermission("ADD_REACTIONS") + "\nView Aduit Log: " + membie.hasPermission("VIEW_AUDIT_LOG") + "\nPriority Speaker: " + membie.hasPermission("PRIORITY_SPEAKER") + "\nStream: " + membie.hasPermission("STREAM") + "\nView Channel: " + membie.hasPermission("VIEW_CHANNEL") + "\nSend Messages: " + membie.hasPermission("SEND_MESSAGES") + "\nSend TTS Messages: " + membie.hasPermission("SEND_TTS_MESSAGES") + "\nManage Messages: " + membie.hasPermission("MANAGE_MESSAGES") + "\nEmbed Links: " + membie.hasPermission("EMBED_LINKS") + "\nAttach Files: " + membie.hasPermission("ATTACH_FILES") + "\nRead Message History: " + membie.hasPermission("READ_MESSAGE_HISTORY") + "\nMention Everyone: " + membie.hasPermission("MENTION_EVERYONE") + "\nUse External Emojis: " + membie.hasPermission("USE_EXTERNAL_EMOJIS") + "\nView Guild Insights: " + membie.hasPermission("VIEW_GUILD_INSIGHTS") + "\nConnect: " + membie.hasPermission("CONNECT") + "\nSpeak: " + membie.hasPermission("SPEAK") + "\nMute Members: " + membie.hasPermission("MUTE_MEMBERS") + "\nDeafen Members: " + membie.hasPermission("DEAFEN_MEMBERS") + "\nMove Members: " + membie.hasPermission("MOVE_MEMBERS") + "\nUse VAD (Voice Activity Detection): " + membie.hasPermission("USE_VAD") + "\nChange Nickname (Self): " + membie.hasPermission("CHANGE_NICKNAME") + "\nChange Nickname (Others): " + membie.hasPermission("MANAGE_NICKNAMES") + "\nManage Roles: " + membie.hasPermission("MANAGE_ROLES") + "\nManage Webhooks: " + membie.hasPermission("MANAGE_WEBHOOKS") + "\nManage Emojis: " + membie.hasPermission("MANAGE_EMOJIS"))
-                     }
-                            
-             
-                    
 
- 
 
-                        
-        }
-        //var range = function(start, end, step) {
-          //  var range = [];
+            //var range = function(start, end, step) {
+            //  var range = [];
             //var typeofStart = typeof start;
             //var typeofEnd = typeof end;}
-        if (CMD_NAME == "pp") {
-            try {
-            const member = message.mentions.members.first()
-            if (member) {
-                len = Math.floor(Math.random() * 10) + 1;
-                if (member.id == "747461108431847485") {
-                    len = 10
-                }
-            if (message.author.tag == "jmjgwg5w7r#8146") {
-                len = 10
-            }
-            if (len == 1) {
-                message.channel.send(`${member}'s pp:\n8=>\n${len} chains long. Must have a hard time impressing people. Max: 10`)
-            }
-            if (len == 2) {
-                message.channel.send(`${member}'s pp:\n8==>\n${len} chains long. Max: 10`)
-            }
-            if (len == 3) {
-                message.channel.send(`${member}'s pp:\n8===>\n${len} chains long. Max: 10`)
-            }
-            if (len == 4) {
-                message.channel.send(`${member}'s pp:\n8====>\n${len} chains long. Max: 10`)
-            }
-            if (len == 5) {
-                message.channel.send(`${member}'s pp:\n8=====>\n${len} chains long. Max: 10`)
-            }if (len == 6) {
-                message.channel.send(`${member}'s pp:\n8======>\n${len} chains long. Max: 10`)
-            }
-            if (len == 7) {
-                message.channel.send(`${member}'s pp:\n8=======>\n${len} chains long. Max: 10`)
-            }
-            if (len == 8) {
-                message.channel.send(`${member}'s pp:\n8========>\n${len} chains long. Max: 10`)
-            }
-            if (len == 9) {
-                message.channel.send(`${member}'s pp:\n8=========>\n${len} chains long. Max: 10`)
-            }
-            if (len == 10) {
-                message.channel.send(`${member}'s pp:\n8==========>\n${len} chains long. JEEZ thats long bro Max: 10`)
-            }
-        }} catch {
-             
-            
-            len = Math.floor(Math.random() * 10) + 1;
-            if (message.author.tag == "jmjgwg5w7r#8146") {
-                len = 10
-            }
-            if (len == 1) {
-                message.channel.send(`${message.author.tag}'s pp:\n8=>\n${len} chains long. Must have a hard time impressing people. Max: 10`)
-            }
-            if (len == 2) {
-                message.channel.send(`${message.author.tag}'s pp:\n8==>\n${len} chains long. Max: 10`)
-            }
-            if (len == 3) {
-                message.channel.send(`${message.author.tag}'s pp:\n8===>\n${len} chains long. Max: 10`)
-            }
-            if (len == 4) {
-                message.channel.send(`${message.author.tag}'s pp:\n8====>\n${len} chains long. Max: 10`)
-            }
-            if (len == 5) {
-                message.channel.send(`${message.author.tag}'s pp:\n8=====>\n${len} chains long. Max: 10`)
-            }if (len == 6) {
-                message.channel.send(`${message.author.tag}'s pp:\n8======>\n${len} chains long. Max: 10`)
-            }
-            if (len == 7) {
-                message.channel.send(`${message.author.tag}'s pp:\n8=======>\n${len} chains long. Max: 10`)
-            }
-            if (len == 8) {
-                message.channel.send(`${message.author.tag}'s pp:\n8========>\n${len} chains long. Max: 10`)
-            }
-            if (len == 9) {
-                message.channel.send(`${message.author.tag}'s pp:\n8=========>\n${len} chains long. Max: 10`)
-            }
-            if (len == 10) {
-                message.channel.send(`${message.author.tag}'s pp:\n8==========>\n${len} chains long. JEEZ thats long bro Max: 10`)
-            }
-        }
-    }
-        
 
-
-
-
-    }
-    });
-
-    client.login("I am not giving you my login code")
-    //If you know what you are doing (and probably if you dont know what you are doing too) you can tell all the secrets in my code but i actually dont care so
+/*if (message.content === "hi hi") {
+                console.log(`hi hi secret by ${message.author.tag}`)
+                message.channel.send("hello")
+            }
+            if (message.content === "oopie") {
+                console.log(`oopie secret by ${message.author.tag}`)
+                message.reply("oopie")
+            }
+            if (message.content === "cock") {
+                console.log(`"r o o s t e r" secret by ${message.author.tag}`)
+                message.react("🐓")
+            }
+            if (message.content === "your stupid") {
+                console.log(`youre secret by ${message.author.tag}`)
+                message.channel.send("You're*")
+            }
+            if (message.content === "Your stupid") {
+                console.log(`youre secret by ${message.author.tag}`)
+                message.channel.send("You're*")
+            }
+            if (message.content === "youre stupid") {
+                console.log(`youre secret by ${message.author.tag}`)
+                message.channel.send("Close, but it's \"You're\"")
+            }
+            if (message.content === "Youre stupid") {
+                console.log(`youre secret by ${message.author.tag}`)
+                message.channel.send("Close, but it's \"You're\"")
+            }
+            if (message.content === "communism") {
+                console.log(`communism secret by ${message.author.tag}`)
+                message.channel.send("https://tenor.com/view/cccp-flag-wave-star-logo-gif-16196191")
+            }
+            if (message.content === "communist") {
+                console.log(`communist secret by ${message.author.tag}`)
+                message.channel.send("https://tenor.com/view/cccp-flag-wave-star-logo-gif-16196191")
+            }*/
